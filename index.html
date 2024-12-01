@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+        *{
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+            background-color: #242523;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #height{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        width: 100%;
+        max-width: 90vw;
+        }
+        .list{
+            text-align: center;
+            flex: 1;
+            margin: 2px;
+            min-width: 30px;
+        max-width: 50px;
+            color: rgb(206, 31, 54);
+            font-size: 2rem;
+            font-family: "Tiny5", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        #run{
+            align-items: center;
+            width: 4rem;
+            height: 2rem;
+            background-color: #3A3B3C;
+            font-size: 1.10rem;
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .infomap{
+            background-color: #e4e6eb;
+            font-size: 1.5rem;
+        }
+
+        h1{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: white;
+        }
+
+        h2{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: white;
+            margin: 6px;
+        }
+
+        .language-c{
+            background-color: #e4e6eb;
+            font-size: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Shell Sort - Estrutura de ordenação</h1>
+    <h2>Gap menos complexo</h2>
+    <section id="height"></section>
+    <section id="info">
+        <div id="trocas" class="infomap"></div>
+        <div id="gap" class="infomap"></div>
+        <button id="run">Run</button>
+        <h2>Gap mais complexo</h2>
+        <pre><code class="language-c">
+#include stdio.h
+#include math.h
+#define N 8
+                
+void shell(int *lista, int tamanho);
+int lista[N] = {1, 9, 6, 35, 2, 99, 8, 7};
+                
+void main() {
+    for (int w = 0; w < N; w++) {
+        printf("%d ", lista[w]);
+    }
+    printf("\n");
+    shell(lista, N);
+    for (int w = 0; w < N; w++) {
+        printf("%d ", lista[w]);
+    }
+    printf("\n");
+}
+                
+void shell(int *lista, int tamanho) {
+    int i, j, aux;
+    float k = log(tamanho + 1) / log(3);
+    k = floor(k + 0.5);
+    int h = (pow(3, (int)k) - 1) / 2;
+    while (h > 0) {
+        for (i = h; i < tamanho; i++) {
+            aux = lista[i];
+            j = i;
+            while (j >= h && lista[j - h] > aux) {
+                lista[j] = lista[j - h];
+                j -= h;
+            }
+            lista[j] = aux;
+            }
+            h = (h - 1) / 3;
+    }
+}
+        </code></pre>
+    </section>
+    <script>
+        const trocas = 0
+        const height = document.getElementById("height")
+        const run = document.getElementById("run")
+        const trade = document.getElementById("trocas")
+        const gapAtual = document.getElementById("gap")
+        
+        const alturas = [55,35,70,84,77,45,99,64]
+        let contador = 0
+
+        function color(x,cor){
+            x.style.backgroundColor = cor
+        }
+
+        function delay(tempo){
+            return new Promise((e)=>{
+                setTimeout(e,tempo)
+            })
+        }
+
+        async function shell(lista){
+            var tamanho = lista.length
+            var i, j, aux, gap
+            console.log(lista)
+            for(gap = Math.floor(tamanho/2); gap > 0; gap = Math.floor(gap/2)){
+                for(i = gap; i < tamanho; i++){
+                    await delay(1000)
+                    aux = lista[i]
+                    for(j = i; j >= gap && lista[j-gap] > aux; j -= gap){
+                        contador++
+                        trade.innerText = "Trocas atual: " + contador
+                        gapAtual.innerText = "Gap atual: " + gap
+                        lista[j] = lista[j-gap]
+                        render(lista)
+                    }
+                    lista[j] = aux
+                }
+            }
+            trade.innerText = "Trocas finalizadas"
+            gapAtual.innerText = ""
+            return lista
+        }
+
+        render(alturas)
+        
+        run.addEventListener("click",async (e)=>{
+             const r = await shell(alturas)
+             render(r)
+            console.log(r)
+            })
+
+        function render(lista){
+            document.querySelectorAll(".list").forEach((el) =>{
+                el.remove()
+            })
+            lista.forEach((e)=>{
+                    const resultado = document.createElement("div")
+                    resultado.classList.add("list")
+                    resultado.style.height = `${e}px
+                    `
+                    resultado.innerText = `${e}`
+                    color(resultado,'#B0B3B8')
+                    height.appendChild(resultado)
+                })
+        }
+    </script>
+</body>
+</html>
