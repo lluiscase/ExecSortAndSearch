@@ -6,3 +6,5 @@ Exercicios referentes a materia de Estrutura de Dados II
 - Compare o tempo de execução do Jump Search com o Binary Search em listas de diferentes tamanhos: Lista do jump ({1, 3, 5, 7, 9, 11, 13, 15};) = tempo 1424945825;  Lista do binary({11,12,14,15,16,17,18,19};) = tempo 0.000001
 - Analise o desempenho do Exponential Search em listas muito grandes e pequenas:Pequena(0,0000001),Grande(0,00001)
 - Explique como a escolha da sequência de intervalos afeta a eficiência do algoritmo: Você conquista a redução de passos, o que seria feito em dobro utilizando insertion, será feito pela metade ja que a organização de gaps prevem as repetições de passos(principalmente se for algoritmos com notações cientificas como o knuth)
+- Analise o desempenho do Selection Sort em listas pequenas, médias e grandes: Pequena: 0.000001 / Média: 0.000001 / Grande: 0.000001
+- Explique como o algoritmo lida com bases diferentes (ex.: base 10 e base 2): 
