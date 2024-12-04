@@ -7,6 +7,7 @@ Exercicios referentes a materia de Estrutura de Dados II
 - Analise o desempenho do Exponential Search em listas muito grandes e pequenas:Pequena(0,0000001),Grande(0,00001)
 - Explique como a escolha da sequência de intervalos afeta a eficiência do algoritmo: Você conquista a redução de passos, o que seria feito em dobro utilizando insertion, será feito pela metade ja que a organização de gaps prevem as repetições de passos(principalmente se for algoritmos com notações cientificas como o knuth)
 - Analise o desempenho do Selection Sort em listas pequenas, médias e grandes: Pequena: 0.000001 / Média: 0.000001 / Grande: 0.000001
+<<<<<<< HEAD
 - Explique como o algoritmo lida com bases diferentes (ex.: base 10 e base 2): 
 - Analise o desempenho do Quick Sort em listas quase ordenadas e completamente desordenadas: quase ordenada: 0.000001, desordenada: 0.00000001
 - Identifique situações em que o Ternary Search seria mais eficiente que o Binary Search: Otimização é unimodal, redução do intervalo/comparação
@@ -18,3 +19,4 @@ Exercicios referentes a materia de Estrutura de Dados II
 | 1.000            | O(log n)      | O(log log n) (se uniforme) | O(√n)      | O(log n)           |
 | 10.000           | O(log n)      | O(log log n) (se uniforme) | O(√n)      | O(log n)           |
 | 100.000          | O(log n)      | O(log log n) (se uniforme) | O(√n)      | O(log n)           |
+- Quick sort: Não estável, Radix sort: Estável, Bucket sort: Estável, Selection sort: Não estável, Merge sort: Estável, Shell sort: Não estável

@@ -14,6 +14,8 @@ int main()
     printArray(desordenada,length);
     Mergesort(desordenada,0,length-1);
     printArray(desordenada,length);
+    int result = binary(desordenada,"uva",length);
+    printf("Posição do elemento: %d \n",result);
 
     return 0;
 }
@@ -69,6 +71,23 @@ void Mergesort(char arr[][100], int l, int r){
         Mergesort(arr,l,m);
         Mergesort(arr,m+1,r);
         Merge(arr,l,m,r);
+    }
+}
+
+int binary(char arr[][100],char* pesquisa, int length){
+    int inicio = 0;
+    int fim = length-1;
+    
+    while(inicio <= fim){
+        int meio = inicio + (fim - inicio)/2;    
+        int cmp = strcmp(pesquisa, arr[meio]);
+        if(cmp == 0){
+            return meio;
+        }else if(cmp < 0){
+             fim = meio-1;
+        }else{
+             inicio = meio+1;
+        }
     }
 }
 

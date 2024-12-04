@@ -145,6 +145,54 @@ void shell(int *lista, int tamanho) {
             })
         }
 
+async function selectionSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        let minIndex = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            await delay(1000)
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (minIndex !== i) {
+            let temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+    return arr;
+}
+
+async function mergeSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    await delay(1000)
+    const mid = Math.floor(arr.length / 2);
+    const left = await mergeSort(arr.slice(0, mid));
+    const right = await mergeSort(arr.slice(mid));
+
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    let result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push(right[rightIndex]);
+            rightIndex++;
+        }
+    }
+
+    return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+}
+
         async function shell(lista){
             var tamanho = lista.length
             var i, j, aux, gap
@@ -171,8 +219,9 @@ void shell(int *lista, int tamanho) {
         render(alturas)
         
         run.addEventListener("click",async (e)=>{
-             const r = await shell(alturas)
-             render(r)
+             const m = await selectionSort(alturas)
+             render(j)
+             render(m)
             console.log(r)
             })
 
